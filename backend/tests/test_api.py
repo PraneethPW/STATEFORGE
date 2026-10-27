@@ -136,3 +136,27 @@ def test_real_postgres_end_to_end_and_security(client):
 def test_payload_limit_and_missing_resource(client):
     assert client.post("/api/auth/login", content=b" " * (1048576 + 1)).status_code == 413
     assert client.get("/api/health").json()["database"] == "connected"
+
+
+def test_password_change_revokes_old_sessions_and_accepts_new_password(client):
+    email = f"password-qa-{uuid.uuid4().hex}@example.org"
+    old = "initial-conformance-password"
+    new = "rotated-conformance-password"
+    registration = client.post(
+        "/api/auth/register", json={"email": email, "password": old, "name": "Password Rotation QA"}
+    )
+    assert registration.status_code == 201
+    headers = {"Authorization": f"Bearer {registration.json()['token']}"}
+    second = client.post("/api/auth/login", json={"email": email, "password": old}).json()
+    assert (
+        client.post(
+            "/api/auth/password", headers=headers, json={"current_password": "incorrect-password", "new_password": new}
+        ).status_code
+        == 403
+    )
+    changed = client.post("/api/auth/password", headers=headers, json={"current_password": old, "new_password": new})
+    assert changed.status_code == 204
+    assert client.get("/api/auth/me", headers=headers).status_code == 401
+    assert client.get("/api/auth/me", headers={"Authorization": f"Bearer {second['token']}"}).status_code == 401
+    assert client.post("/api/auth/login", json={"email": email, "password": old}).status_code == 401
+    assert client.post("/api/auth/login", json={"email": email, "password": new}).status_code == 200

@@ -4,7 +4,7 @@ Validation was performed on 27 October 2026. Test records are explicitly owned b
 
 ## Automated checks
 
-The release suite includes 25 tests, with real SPIN/compiler execution and two API integration tests against a disposable PostgreSQL database. The cases include finite guard updates, generated engine equivalence, a 40-graph independent AF oracle, safety-versus-reachability semantics, liveness counterexample cycles, terminal stuttering, nondeterministic guards, typed configuration identity, expression injection, LTL grammar rejection, adversarial synthesis, property-preservation gates, tenant isolation, optimistic versions, immutable/append-only evidence, idempotency, stale model identities, adaptation and key revocation.
+The release suite includes 26 tests, with real SPIN/compiler execution and three API integration tests against a disposable PostgreSQL database. The cases include finite guard updates, generated engine equivalence, a 40-graph independent AF oracle, safety-versus-reachability semantics, liveness counterexample cycles, terminal stuttering, nondeterministic guards, typed configuration identity, expression injection, LTL grammar rejection, adversarial synthesis, property-preservation gates, tenant isolation, optimistic versions, immutable/append-only evidence, idempotency, stale model identities, adaptation and key revocation.
 
 The TypeScript production build passes. The runtime dependency audit reported zero vulnerabilities at validation time. GitHub Actions checks the frontend build/audit and repeats backend analysis and PostgreSQL integration with SPIN installed.
 

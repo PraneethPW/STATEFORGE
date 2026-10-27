@@ -76,9 +76,9 @@ export default function App() {
     else url.searchParams.delete("project");
     history.replaceState(null, "", url);
   }, [projectId]);
-  async function logout() {
+  async function logout(skipRequest = false) {
     try {
-      await api("/auth/logout", {});
+      if (!skipRequest) await api("/auth/logout", {});
     } finally {
       setToken(null);
       setUser(null);
@@ -358,7 +358,7 @@ function AccountModal({
   capabilities?: Capabilities;
   close: () => void;
   notify: (s: string) => void;
-  logout: () => Promise<void>;
+  logout: (skipRequest?: boolean) => Promise<void>;
 }) {
   const [password, setPassword] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -381,7 +381,7 @@ function AccountModal({
               });
               notify("Password changed. Sign in again with your new password.");
               close();
-              await logout();
+              await logout(true);
             } catch (e) {
               notify((e as Error).message);
             } finally {
