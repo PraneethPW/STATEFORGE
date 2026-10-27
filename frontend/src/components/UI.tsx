@@ -1,7 +1,15 @@
+import PrintText from "./PrintText";
 import { useEffect, useRef } from "react";
 import type { ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { X, LoaderCircle, ArrowUpRight, Hexagon } from "lucide-react";
+import {
+  X,
+  LoaderCircle,
+  ArrowUpRight,
+  Hexagon,
+  Check,
+  AlertTriangle,
+} from "lucide-react";
 export function Logo({ small = false }: { small?: boolean }) {
   return (
     <div className="brand">
@@ -41,7 +49,13 @@ export function Status({ value }: { value: string }) {
   ].includes(value);
   return (
     <span className={`status ${good ? "good" : bad ? "bad" : ""}`}>
-      <i />
+      {good ? (
+        <Check size={10} aria-hidden="true" />
+      ) : bad ? (
+        <AlertTriangle size={10} aria-hidden="true" />
+      ) : (
+        <i />
+      )}
       {value.replaceAll("_", " ")}
     </span>
   );
@@ -60,7 +74,9 @@ export function Empty({
   return (
     <div className="empty">
       <div className="empty-icon">{icon}</div>
-      <h3>{title}</h3>
+      <h3>
+        <PrintText>{title}</PrintText>
+      </h3>
       <p>{children}</p>
       {action}
     </div>
@@ -136,7 +152,9 @@ export function Modal({
         <header>
           <div>
             <span className="eyebrow">STATEFORGE / WORKSPACE</span>
-            <h2 id="modal-title">{title}</h2>
+            <h2 id="modal-title">
+              <PrintText>{title}</PrintText>
+            </h2>
             {subtitle && <p>{subtitle}</p>}
           </div>
           <button
@@ -193,7 +211,9 @@ export function SectionTitle({
     <div className="section-title">
       <div>
         <span className="eyebrow">{index}</span>
-        <h2>{title}</h2>
+        <h2>
+          <PrintText>{title}</PrintText>
+        </h2>
         {description && <p>{description}</p>}
       </div>
       {action}

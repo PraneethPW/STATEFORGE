@@ -1,3 +1,4 @@
+import PrintText from "./PrintText";
 import { lazy, Suspense, useEffect, useState } from "react";
 import {
   motion,
@@ -106,9 +107,11 @@ export default function Auth({ onAuth }: { onAuth: (u: User) => void }) {
               AUTOMATA-DRIVEN ENGINEERING <span>V.01</span>
             </div>
             <h1>
-              Behavior,
-              <br />
-              by <em>design.</em>
+              <PrintText>
+                Behavior,
+                <br />
+                by <em>design.</em>
+              </PrintText>
             </h1>
             <p className="hero-description">
               From the first requirement to the last runtime event. One model to
@@ -149,9 +152,11 @@ export default function Auth({ onAuth }: { onAuth: (u: User) => void }) {
             <div>
               <span className="eyebrow">ONE CONTINUOUS LIFECYCLE</span>
               <h2>
-                Close the gap between
-                <br />
-                what you design and what runs.
+                <PrintText>
+                  Close the gap between
+                  <br />
+                  what you design and what runs.
+                </PrintText>
               </h2>
             </div>
             <p>
@@ -192,7 +197,9 @@ export default function Auth({ onAuth }: { onAuth: (u: User) => void }) {
                   <Icon size={25} strokeWidth={1.25} />
                   <code>{number}</code>
                 </div>
-                <h3>{title}</h3>
+                <h3>
+                  <PrintText>{title}</PrintText>
+                </h3>
                 <p>{text}</p>
               </motion.article>
             ))}
@@ -237,7 +244,11 @@ export default function Auth({ onAuth }: { onAuth: (u: User) => void }) {
             </button>
             <Logo />
             <span className="eyebrow">YOUR ENGINEERING WORKSPACE</span>
-            <h2>{register ? "Create your account." : "Welcome back."}</h2>
+            <h2>
+              <PrintText>
+                {register ? "Create your account." : "Welcome back."}
+              </PrintText>
+            </h2>
             <p>
               {register
                 ? "Start with an empty workspace. Build your own behavior."

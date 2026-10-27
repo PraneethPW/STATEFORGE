@@ -29,6 +29,10 @@ StateForge/
 └── .github/workflows/ci.yml   Build, analysis and database integration checks
 ```
 
+## Visual system
+
+The interface uses ink-black surfaces, crimson accents, abstract blood-ink textures, and self-hosted Special Elite / IBM Plex Mono typography. Page and dialog headings print in as they enter view. Printing effects expose stable accessible labels, respect reduced-motion preferences, and keep form inputs and runtime data immediate. Graph edges, nodes, minimaps, Three.js materials, status badges and authentication views use the same palette.
+
 ## Run locally
 
 Requires Node.js 24, Python 3.12+, a real PostgreSQL database (Neon is supported), and SPIN plus a C compiler for LTL properties. CTL and finite game synthesis do not need an external solver.

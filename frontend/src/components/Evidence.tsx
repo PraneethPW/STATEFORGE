@@ -1,3 +1,4 @@
+import PrintText from "./PrintText";
 import { useState } from "react";
 import {
   ShieldCheck,
@@ -102,13 +103,15 @@ export default function Evidence({
                 <div>
                   <span className="eyebrow">RUN / {run.id.slice(0, 8)}</span>
                   <h3>
-                    {run.status === "passed"
-                      ? "Behavior checks out."
-                      : run.status === "failed"
-                        ? "A path needs your attention."
-                        : ["queued", "running"].includes(run.status)
-                          ? "Exploring the behavior space…"
-                          : "Analysis did not complete."}
+                    <PrintText>
+                      {run.status === "passed"
+                        ? "Behavior checks out."
+                        : run.status === "failed"
+                          ? "A path needs your attention."
+                          : ["queued", "running"].includes(run.status)
+                            ? "Exploring the behavior space…"
+                            : "Analysis did not complete."}
+                    </PrintText>
                   </h3>
                 </div>
                 <Status value={run.status} />
@@ -300,7 +303,9 @@ export default function Evidence({
         </div>
       </div>
       <div className="synthesis-results">
-        <h3>Controller synthesis</h3>
+        <h3>
+          <PrintText>Controller synthesis</PrintText>
+        </h3>
         <p className="muted">
           Solve a finite safety and reachability game. Environment decisions
           remain adversarial; controller choices can be restricted.

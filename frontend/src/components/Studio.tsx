@@ -1,3 +1,4 @@
+import PrintText from "./PrintText";
 import {
   lazy,
   Suspense,
@@ -245,8 +246,10 @@ export default function Studio({
             <span>{project.name}</span>
           </div>
           <h1>
-            {project.name}
-            <span className="project-kind">FINITE-STATE SYSTEM</span>
+            <PrintText>
+              {project.name}
+              <span className="project-kind">FINITE-STATE SYSTEM</span>
+            </PrintText>
           </h1>
           <p>
             {project.description ||
@@ -326,9 +329,11 @@ export default function Studio({
                   ENGINEERING CONTROL ROOM
                 </span>
                 <h2>
-                  Make every transition
-                  <br />
-                  <em>intentional.</em>
+                  <PrintText>
+                    Make every transition
+                    <br />
+                    <em>intentional.</em>
+                  </PrintText>
                 </h2>
                 <p>
                   Shape the behavior. Explore every path.
@@ -397,7 +402,9 @@ export default function Studio({
                 <div className="panel-header">
                   <div>
                     <span className="eyebrow">BEHAVIORAL PIPELINE</span>
-                    <h3>From intention to execution</h3>
+                    <h3>
+                      <PrintText>From intention to execution</PrintText>
+                    </h3>
                   </div>
                   <ArrowUpRight size={17} />
                 </div>
@@ -463,7 +470,9 @@ export default function Studio({
                 <div className="panel-header">
                   <div>
                     <span className="eyebrow">LIVE WORKSPACE FEED</span>
-                    <h3>Latest signals</h3>
+                    <h3>
+                      <PrintText>Latest signals</PrintText>
+                    </h3>
                   </div>
                   <span className="live-dot" />
                 </div>
@@ -511,7 +520,9 @@ export default function Studio({
             <div className="authoring-top">
               <div>
                 <span className="eyebrow">01 / MODEL STUDIO</span>
-                <h2>Design the behavior.</h2>
+                <h2>
+                  <PrintText>Design the behavior.</PrintText>
+                </h2>
               </div>
               <div className="flex gap-2">
                 {activeState && (
@@ -615,7 +626,9 @@ export default function Studio({
             <div className="requirements-panel">
               <div>
                 <span className="eyebrow">SOURCE REQUIREMENTS</span>
-                <h3>Start with the intent.</h3>
+                <h3>
+                  <PrintText>Start with the intent.</PrintText>
+                </h3>
                 <p>
                   Describe behavior, constraints, and assumptions. AI proposes
                   an explicit model for your review; it supplies no proof.
@@ -662,7 +675,9 @@ export default function Studio({
             {snapshot.proposals.filter((p) => p.kind !== "synthesis").length >
               0 && (
               <div className="proposal-history">
-                <h3>Requirement & repair proposals</h3>
+                <h3>
+                  <PrintText>Requirement & repair proposals</PrintText>
+                </h3>
                 {snapshot.proposals
                   .filter((p) => p.kind !== "synthesis")
                   .map((p) => (
@@ -801,7 +816,9 @@ export default function Studio({
                     <span className="eyebrow">
                       EVENT {e.id} · {time(e.created_at)}
                     </span>
-                    <h3>{e.kind.replaceAll(".", " ")}</h3>
+                    <h3>
+                      <PrintText>{e.kind.replaceAll(".", " ")}</PrintText>
+                    </h3>
                     <details>
                       <summary>Inspect evidence</summary>
                       <pre>{JSON.stringify(e.data, null, 2)}</pre>
@@ -958,7 +975,9 @@ function ArtifactCard({
         <Status value="passed" />
       </div>
       <span className="eyebrow">VERIFIED PYTHON PACKAGE</span>
-      <h3>{artifact.manifest.generator}</h3>
+      <h3>
+        <PrintText>{artifact.manifest.generator}</PrintText>
+      </h3>
       <p>
         Portable engine · JSON model · monitor predicates · conformance tests ·
         evidence manifest
@@ -1054,7 +1073,9 @@ function ProposalReview({
                 </div>
               ))}
             </div>
-            <h3>Proposed transitions</h3>
+            <h3>
+              <PrintText>Proposed transitions</PrintText>
+            </h3>
             <div className="proposal-transitions">
               {candidate.transitions.map((t) => (
                 <div key={t.id}>
@@ -1067,7 +1088,9 @@ function ProposalReview({
             </div>
             {candidate.assumptions.length > 0 && (
               <>
-                <h3>Model assumptions</h3>
+                <h3>
+                  <PrintText>Model assumptions</PrintText>
+                </h3>
                 <ul>
                   {candidate.assumptions.map((s, i) => (
                     <li key={i}>{s}</li>

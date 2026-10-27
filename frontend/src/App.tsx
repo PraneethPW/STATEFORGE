@@ -1,3 +1,4 @@
+import PrintText from "./components/PrintText";
 import { useCallback, useEffect, useState } from "react";
 import {
   ArrowLeft,
@@ -188,7 +189,9 @@ export default function App() {
             <div className="projects-title">
               <div>
                 <span className="eyebrow">YOUR ENGINEERING WORKSPACE</span>
-                <h1>Systems start here.</h1>
+                <h1>
+                  <PrintText>Systems start here.</PrintText>
+                </h1>
                 <p>Give your software an explicit behavioral foundation.</p>
               </div>
               <button
@@ -212,7 +215,9 @@ export default function App() {
                       <ArrowUpRight size={17} />
                     </div>
                     <span className="eyebrow">FINITE-STATE SYSTEM</span>
-                    <h2>{p.name}</h2>
+                    <h2>
+                      <PrintText>{p.name}</PrintText>
+                    </h2>
                     <p>{p.description || "Behavioral engineering workspace"}</p>
                     <footer>
                       <span>{p.version_count || 0} model versions</span>
@@ -258,7 +263,9 @@ export default function App() {
             <div className="project-guide">
               <BookOpen size={22} strokeWidth={1.3} />
               <div>
-                <h3>One model through the lifecycle.</h3>
+                <h3>
+                  <PrintText>One model through the lifecycle.</PrintText>
+                </h3>
                 <p>
                   Author states and properties, verify every reachable path,
                   generate the implementation, and monitor real runtime events.
@@ -453,7 +460,9 @@ function AccountModal({
               <code>{capabilities?.operators.join(" · ")}</code>
             </div>
           </div>
-          <h3>Implementation boundaries</h3>
+          <h3>
+            <PrintText>Implementation boundaries</PrintText>
+          </h3>
           <p className="muted">
             {capabilities?.synthesis}. Flat finite-state models with finite
             literal updates. No arbitrary code execution or third-party side

@@ -1,3 +1,4 @@
+import PrintText from "./PrintText";
 import { useEffect, useMemo, useState } from "react";
 import {
   ReactFlow,
@@ -98,10 +99,10 @@ export default function GraphEditor({
         label: t.event,
         animated: !!activeState && t.target === activeState,
         type: "smoothstep",
-        markerEnd: { type: MarkerType.ArrowClosed, color: "#7e998c" },
-        style: { stroke: "#5c7769", strokeWidth: 1.5 },
-        labelStyle: { fill: "#bdc9c0", fontSize: 11 },
-        labelBgStyle: { fill: "#111a17" },
+        markerEnd: { type: MarkerType.ArrowClosed, color: "#bc3852" },
+        style: { stroke: "#a43b51", strokeWidth: 1.5 },
+        labelStyle: { fill: "#efd4dc", fontSize: 11 },
+        labelBgStyle: { fill: "#19090f" },
         labelBgPadding: [8, 5],
       })),
     );
@@ -379,11 +380,11 @@ export default function GraphEditor({
                 colorMode="dark"
                 proOptions={{ hideAttribution: false }}
               >
-                <Background color="#26342e" gap={24} size={1} />
+                <Background color="#36121d" gap={24} size={1} />
                 <Controls showInteractive={false} />
                 <MiniMap
-                  nodeColor="#496842"
-                  maskColor="#090f11bb"
+                  nodeColor="#9f1d3b"
+                  maskColor="#0b0407bb"
                   pannable
                   zoomable
                 />
@@ -432,7 +433,9 @@ export default function GraphEditor({
         <div className="list-section">
           <div className="list-intro">
             <div>
-              <h3>Behavioral contracts</h3>
+              <h3>
+                <PrintText>Behavioral contracts</PrintText>
+              </h3>
               <p>
                 Declare what must hold across all possible executions.
                 Predicates use state IDs and finite variables.
@@ -487,7 +490,9 @@ export default function GraphEditor({
         <div className="list-section">
           <div className="list-intro">
             <div>
-              <h3>Finite variables</h3>
+              <h3>
+                <PrintText>Finite variables</PrintText>
+              </h3>
               <p>
                 Guard variables have explicit finite domains. Updates assign
                 literal values within those domains.

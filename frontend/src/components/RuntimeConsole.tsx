@@ -1,3 +1,4 @@
+import PrintText from "./PrintText";
 import { useCallback, useEffect, useState } from "react";
 import {
   Radio,
@@ -174,7 +175,9 @@ export default function RuntimeConsole({
               <div className="panel-header">
                 <div>
                   <span className="eyebrow">EVENT DISPATCH</span>
-                  <h3>Drive the actual engine.</h3>
+                  <h3>
+                    <PrintText>Drive the actual engine.</PrintText>
+                  </h3>
                 </div>
                 <Send size={18} />
               </div>
@@ -292,7 +295,9 @@ export default function RuntimeConsole({
             <div className="panel-header">
               <div>
                 <span className="eyebrow">APPEND-ONLY EVIDENCE</span>
-                <h3>Execution trace</h3>
+                <h3>
+                  <PrintText>Execution trace</PrintText>
+                </h3>
               </div>
               <span className="muted">
                 {loading ? "Syncing…" : `${traces.length} most recent events`}
@@ -348,7 +353,9 @@ export default function RuntimeConsole({
           </div>
           <div className="adapt-panel">
             <div>
-              <h3>Verified adaptation</h3>
+              <h3>
+                <PrintText>Verified adaptation</PrintText>
+              </h3>
               <p>
                 Activate a strategy for this exact version only when the current
                 configuration is inside its independently verified reachable

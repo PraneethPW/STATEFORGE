@@ -43,10 +43,10 @@ function Lattice({ quiet }: { quiet: boolean }) {
       <mesh>
         <icosahedronGeometry args={[2.75, 1]} />
         <meshBasicMaterial
-          color="#b5f169"
+          color="#f42549"
           wireframe
           transparent
-          opacity={0.11}
+          opacity={0.18}
         />
       </mesh>
       <points>
@@ -54,7 +54,7 @@ function Lattice({ quiet }: { quiet: boolean }) {
           <bufferAttribute attach="attributes-position" args={[points, 3]} />
         </bufferGeometry>
         <pointsMaterial
-          color="#d2ff9b"
+          color="#ff778b"
           size={0.035}
           transparent
           opacity={0.7}
@@ -62,11 +62,11 @@ function Lattice({ quiet }: { quiet: boolean }) {
       </points>
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[3.45, 0.008, 8, 120]} />
-        <meshBasicMaterial color="#b5f169" transparent opacity={0.2} />
+        <meshBasicMaterial color="#f42549" transparent opacity={0.2} />
       </mesh>
       <mesh rotation={[0.3, 0.7, 0.8]}>
         <torusGeometry args={[3.65, 0.006, 8, 120]} />
-        <meshBasicMaterial color="#c9e8df" transparent opacity={0.13} />
+        <meshBasicMaterial color="#be314b" transparent opacity={0.13} />
       </mesh>
     </group>
   );
