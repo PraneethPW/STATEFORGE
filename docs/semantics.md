@@ -1,12 +1,12 @@
 # Executable semantics
 
-A configuration consists of a state identifier and the ordered tuple of finite variable values. The initial configuration uses the declared initial state and variable initial values. Guards are side-effect-free boolean expressions over that configuration. Updates are simultaneous literal assignments to declared finite domains. There is no hidden environment input, arbitrary expression evaluator, external action execution, or implicit timer.
+A configuration consists of a state identifier and the ordered tuple of finite variable values. Each variable uses a homogeneous domain so boolean and integer identities cannot alias. The initial configuration uses the declared initial state and variable initial values. Guards are side-effect-free boolean expressions over that configuration. Updates are simultaneous literal assignments to declared finite domains. There is no hidden environment input, arbitrary expression evaluator, external action execution, or implicit timer.
 
 Two transitions with the same source and event must not have overlapping guards for any declared valuation, including currently unreachable valuations. Different event names represent distinct possible choices. All enabled environment events are explored. Terminal states must have no outgoing transitions. For temporal semantics, a configuration without successors gets a self-loop; nonterminal deadlocks also produce a blocking structural diagnostic. Unreachable named states are warnings with their identifiers, rather than proofs of invalid behavior.
 
 ## CTL
 
-Predicates may use `state`, variable names, boolean/integer/string constants, typed equality/inequality, ordered integer/string comparisons, and `and`, `or`, `not`. Boolean `True` is distinct from integer `1`. Names, calls, attributes, indexing, arithmetic, comprehensions, and executable code are rejected unless explicitly allowed by the closed predicate grammar.
+Predicates may use `state`, variable names, boolean/integer/string constants, typed equality/inequality, ordered integer/string comparisons, and `and`, `or`, `not`. Boolean `True` is distinct from integer `1`. Unknown names, calls, attributes, indexing, arithmetic, comprehensions, and executable code are rejected unless explicitly allowed by the closed predicate grammar.
 
 Each operator applies to a predicate, not a nested CTL formula:
 

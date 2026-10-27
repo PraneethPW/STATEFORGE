@@ -30,6 +30,8 @@ class Variable(Strict):
             raise ValueError("Reserved variable name")
         if any(type(v) not in (bool, int, str) for v in self.domain):
             raise ValueError("Finite domains use boolean, integer or string constants")
+        if any(type(v) is not type(self.domain[0]) for v in self.domain):
+            raise ValueError("Each variable domain must use one type: boolean, integer, or string")
         if len({(type(v).__name__, str(v)) for v in self.domain}) != len(self.domain):
             raise ValueError("Duplicate domain values")
         if not any(type(v) is type(self.initial) and v == self.initial for v in self.domain):

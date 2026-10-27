@@ -2,6 +2,9 @@
 
 The repository deploys the frontend on Vercel and two independent backend services on Railway, both backed by the same Neon database. Build and verify a reviewed commit before linking deployments. Railway's legacy `railway.json`/`railway.toml` config is deprecated for new services; configure the service fields through Railway or import them into its current Infrastructure as Code workflow.
 
+Live frontend: <https://stateforge-studio.vercel.app>  
+Live API: <https://stateforge-api-production.up.railway.app/api/health>
+
 ## Railway API
 
 - Source repository: `PraneethPW/STATEFORGE`, branch `main`.

@@ -205,3 +205,12 @@ def test_af_fixed_point_matches_independent_cycle_oracle():
         expected = not cycle(0, set(), set())
         actual = verify(model)["properties"][0]["status"] == "passed"
         assert actual == expected
+
+
+def test_mixed_boolean_integer_domains_cannot_alias_configuration_identity():
+    from pydantic import ValidationError
+
+    # Python considers False == 0 and True == 1 in tuple/dict keys. A typed,
+    # homogeneous variable domain prevents those identities from collapsing.
+    with pytest.raises(ValidationError, match="one type"):
+        machine(variables=[{"name": "ambiguous", "domain": [False, 0, True, 1], "initial": False}])

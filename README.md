@@ -2,6 +2,10 @@
 
 StateForge connects requirements, versioned finite-state models, formal verification, generated Python engines, and live runtime monitoring. All application data is persisted in PostgreSQL. The application starts empty: there are no seeded projects, fabricated metrics, simulated verification verdicts, or mock API fallbacks.
 
+Live application: [stateforge-studio.vercel.app](https://stateforge-studio.vercel.app)  
+API health: [Railway](https://stateforge-api-production.up.railway.app/api/health)  
+Source: [PraneethPW/STATEFORGE](https://github.com/PraneethPW/STATEFORGE)
+
 ## Repository
 
 ```text
@@ -69,7 +73,7 @@ Open `http://127.0.0.1:5173`. The Vite development proxy connects `/api` to Fast
 
 ## Formal support and limits
 
-- Flat deterministic event-driven machines with boolean, integer, and string variables over explicit finite domains. Transition updates assign literal domain values.
+- Flat deterministic event-driven machines with boolean, integer, and string variables over explicit, homogeneous finite domains. Transition updates assign literal domain values.
 - Up to 150 states, 600 transitions, 60 properties, 8 variables, and 10,000 configurations. The shared analysis time budget is 20 seconds.
 - CTL: `AG`, `AF`, `EF`, `EG`, `AX`, and `EX` with non-nested boolean predicates. Guards use constants, names, comparisons, `and`, `or`, and `not`. No arbitrary `eval`, Python calls, indexing, or arithmetic.
 - SPIN LTL: nested `G`, `F`, `U`, `R`, `!`, `&&`, `||`, `->`, `<->`, parentheses, and state propositions `at_StateId`. No `X` or variable propositions. Translations, configuration maps, solver options, versions, logs, and counterexample traces are preserved in evidence.
