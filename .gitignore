@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+*.egg-info/
+.env
+.env.*
+!.env.example
+.vercel/
+.DS_Store
+work/
+*.log
+
+*.tsbuildinfo
