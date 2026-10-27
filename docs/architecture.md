@@ -12,7 +12,7 @@ Verification jobs are committed before the API returns. Independent Railway work
 
 The explicit-state engine enumerates reachable configurations and applies CTL fixed points. SPIN receives a generated Promela transition graph and an LTL formula parsed through a closed grammar. No arbitrary Promela or C is accepted from clients. Compiler and verifier subprocesses receive a minimal environment without application secrets, run in temporary directories, and use OS CPU, memory (Linux), output and descriptor budgets. The worker Docker image runs as a non-root user. Model-generated application code is downloaded, not executed by the service.
 
-AI requests go only from FastAPI to OpenRouter. The validated draft, actual provider model, usage information, ambiguity list, and prompt version become a proposal. User review precedes model acceptance. Repair attempts are bounded per base version. AI never writes verification verdicts.
+AI requests go only from FastAPI to OpenRouter. The validated draft, actual provider model, usage information, ambiguity list, and prompt version become a proposal. User review precedes model acceptance. Repair attempts are bounded per base version. A repair cannot delete or weaken original property formulas; candidate models are independently verified and failed candidates cannot be adopted directly. AI never writes verification verdicts.
 
 ## Live updates and ingestion
 

@@ -4,7 +4,14 @@ from fastapi import HTTPException
 from pydantic import ValidationError
 from .config import settings
 from .schemas import Model
-from .engine import build_graph, ModelError, BudgetExceeded
+from .engine import build_graph, verify, ModelError, BudgetExceeded
+
+
+def check_repair_contract(original: dict, candidate: Model):
+    before = {p["id"]: (p["operator"], p["predicate"]) for p in original["properties"]}
+    after = {p.id: (p.operator, p.predicate) for p in candidate.properties}
+    if before != after:
+        raise ModelError("Repairs must preserve every original property ID, operator, and predicate exactly")
 
 
 def propose(requirements: str, current=None, evidence=None):
@@ -68,7 +75,9 @@ def propose(requirements: str, current=None, evidence=None):
                             not isinstance(x, str) for x in parsed.get(key, [])
                         ):
                             raise ValueError("Invalid AI metadata")
-                    return {
+                    if evidence is not None and current is not None:
+                        check_repair_contract(current, model)
+                    result = {
                         "model": model.model_dump(),
                         "ambiguities": parsed.get("ambiguities", []),
                         "notes": parsed.get("notes", []),
@@ -79,6 +88,10 @@ def propose(requirements: str, current=None, evidence=None):
                         "review_required": True,
                         "attempts": attempt + 1,
                     }
+                    if evidence is not None and current is not None:
+                        result["verification"] = verify(model)
+                        result["status"] = "candidate" if result["verification"]["status"] == "passed" else "rejected"
+                    return result
                 except (KeyError, IndexError, TypeError, ValueError, ValidationError, ModelError) as error:
                     if attempt:
                         raise

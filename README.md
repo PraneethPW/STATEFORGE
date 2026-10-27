@@ -66,7 +66,7 @@ Open `http://127.0.0.1:5173`. The Vite development proxy connects `/api` to Fast
 2. Open Model studio. Add states and transitions, or enter requirements and request an OpenRouter draft. AI outputs are validated proposals requiring explicit review.
 3. Add finite variables and temporal properties. Set an initial state. Link elements to source requirements. Inspect assumptions and resolve proposal ambiguities.
 4. Save an immutable version, review it, and approve it. The worker processes queued verification runs and streams updates to the browser.
-5. Inspect failed properties and counterexample paths. Optionally request one of at most five repair proposals per base version, review it, save a revision, and reverify.
+5. Inspect failed properties and counterexample paths. Optionally request one of at most five repair proposals per base version, review it, save a revision, and reverify. Repair proposals preserve original property formulas and are independently rechecked before they become eligible for adoption.
 6. Generate and download an engine package after a passing run. Run its included tests with `python -m unittest -v test_engine.py`.
 7. Start a monitored runtime using that artifact. Dispatch real events from the console or integrate the authenticated ingestion API. Save the one-time runtime key securely.
 8. Synthesize a controller strategy using a safety predicate and reachability goal. State ownership determines adversarial environment decisions. Candidate strategies are independently checked. Activate a reviewed candidate only for its exact source version and reachable current configuration.

@@ -214,3 +214,17 @@ def test_mixed_boolean_integer_domains_cannot_alias_configuration_identity():
     # homogeneous variable domain prevents those identities from collapsing.
     with pytest.raises(ValidationError, match="one type"):
         machine(variables=[{"name": "ambiguous", "domain": [False, 0, True, 1], "initial": False}])
+
+
+def test_ai_repair_cannot_drop_or_weaken_original_properties():
+    from app.ai import check_repair_contract
+
+    original = machine()
+    candidate = original.model_copy(deep=True)
+    check_repair_contract(original.model_dump(), candidate)
+    candidate.properties[0].predicate = "True"
+    with pytest.raises(ModelError, match="preserve every original property"):
+        check_repair_contract(original.model_dump(), candidate)
+    candidate.properties = []
+    with pytest.raises(ModelError, match="preserve every original property"):
+        check_repair_contract(original.model_dump(), candidate)
